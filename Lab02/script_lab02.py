@@ -1,5 +1,4 @@
 import requests
-import time
 
 # URL del formulario de inicio de sesión
 url = "http://localhost:4280/vulnerabilities/brute/"
