@@ -1,0 +1,13 @@
+ansible
+oracle
+test
+azureuser
+admin
+vargrant
+mysql
+root
+guest
+1337
+pablo
+smithy
+gordonb
