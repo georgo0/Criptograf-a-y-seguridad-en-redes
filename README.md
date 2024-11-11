@@ -10,4 +10,9 @@ Laboratorio 3:
   - La funcion hash encontrada en la pagina web del login de Bsale (https://login.bsale.cl/):
     ```bash
       sha1Hash('')
-    ``` 
+    ```
+Laboratorio 4:  
+  - Libreria utilizada
+    ```bash
+        pip install pycryptodomex
+    ```
