@@ -32,8 +32,8 @@ Laboratorio 5:
         cd ~/lab5_cripto/C3
         docker build -t c3_image .
         
-        cd ~/lab5_cripto/C4
-        docker build -t s1_image .
+        cd ~/lab5_cripto/C4S1
+        docker build -t c4_s1_image .
     ```
   - Para obtener la IP de cada contenedor se utilizó:
     ```bash
