@@ -16,3 +16,52 @@ Laboratorio 4:
     ```bash
         pip install pycryptodomex
     ```
+Laboratorio 5:
+  - Se creo el siguiente directorio:
+    ```bash
+        mkdir -p ~/lab5_cripto/{C1,C2,C3,C4}
+    ```
+  - Una vez creados y guardados los Dockerfiles, se levantaron los contenedores con:
+    ```bash
+        cd ~/lab5_cripto/C1
+        docker build -t c1_image .
+    
+        cd ~/lab5_cripto/C2
+        docker build -t c2_image .
+        
+        cd ~/lab5_cripto/C3
+        docker build -t c3_image .
+        
+        cd ~/lab5_cripto/C4
+        docker build -t s1_image .
+    ```
+  - Para obtener la IP de cada contenedor se utilizó:
+    ```bash
+        sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' C1
+        sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' C2
+        sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' C3
+        sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' C4S1
+    ```
+- Para generar la conexión entre cliente y servidor se utilizó:
+    ```bash
+        #user: prueba
+        #password: prueba
+        
+        #En el desarrollo de este laboratorio, la IP del servidor corresponde a 172.19.0.5
+        
+        docker exec -it C1 /bin/bash
+        ssh prueba@172.19.0.5
+        
+        docker exec -it C2 /bin/bash
+        ssh prueba@172.19.0.5
+        
+        docker exec -it C3 /bin/bash
+        ssh prueba@172.19.0.5
+        
+        docker exec -it C4S1 /bin/bash
+        ssh prueba@172.19.0.5
+    ```
+
+
+
+    
