@@ -1,0 +1,45 @@
+#Accede al contenedor C3_mod:
+
+    docker exec -it c3 bash
+    Esto te abrirá una terminal interactiva dentro del contenedor.
+
+#Actualiza los repositorios e instala dependencias y ejecuta los siguientes comandos para asegurarte de tener las herramientas necesarias para descargar, compilar y reemplazar el cliente SSH:
+
+    apt update && apt install -y \
+    wget \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    vim
+
+#Descarga el código fuente de OpenSSH y dentro del contenedor, descarga el código fuente de OpenSSH desde el sitio oficial:
+
+    wget https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz
+
+#Extrae el código fuente y extrae el archivo descargado:
+
+    tar -xvzf openssh-9.3p1.tar.gz
+    cd openssh-9.3p1
+
+
+#Modifica el archivo version.h y edita el archivo version.h para personalizar la versión del cliente SSH. Por ejemplo:
+
+    vim version.h
+
+#Busca la línea que define la versión (algo como #define SSH_VERSION) y cámbiala a:
+
+    define SSH_VERSION "OpenSSH.?"
+
+#Compila OpenSSH y una vez editado el archivo, compila el cliente SSH:
+
+    ./configure
+    make
+    make install
+
+#Reemplaza el binario existente del cliente SSH y eemplaza el cliente SSH existente en el contenedor con el binario recién compilado:
+
+    mv /usr/local/bin/ssh /usr/bin/ssh
+
+#Verifica la versión personalizada y finalmente, asegúrate de que el cliente SSH modificado está en uso ejecutando:
+
+    ssh -V

@@ -1,0 +1,16 @@
+cd ~/lab5_cripto/C1
+docker build -t c1_image .
+
+cd ~/lab5_cripto/C2
+docker build -t c2_image .
+
+cd ~/lab5_cripto/C3
+docker build -t c3_image .
+
+cd ~/lab5_cripto/C4-S1
+docker build -t c4_s1_image .
+
+
+#Para clinete modificado
+cd ~/lab5_cripto/C3_mod
+docker build -t c3_mod_image .

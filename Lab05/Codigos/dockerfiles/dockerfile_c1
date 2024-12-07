@@ -1,0 +1,16 @@
+#nano ~/lab5_cripto/C1/Dockerfile
+
+FROM ubuntu:16.10
+
+# Cambiar las fuentes de los repositorios para versiones obsoletas
+RUN sed -i 's|archive.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+RUN sed -i 's|security.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+
+# Actualizar e instalar únicamente el cliente SSH necesario
+RUN apt-get update && \
+    apt-get install -y openssh-client curl wget vim && \
+    apt-get clean
+
+WORKDIR /app
+
+CMD ["/bin/bash"]

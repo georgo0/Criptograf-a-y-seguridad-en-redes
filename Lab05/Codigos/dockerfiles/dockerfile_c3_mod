@@ -1,0 +1,29 @@
+FROM ubuntu:20.10
+
+# Cambiar las fuentes de los repositorios para versiones obsoletas
+RUN sed -i 's|archive.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+RUN sed -i 's|security.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+
+# Actualizar repositorios e instalar dependencias necesarias
+RUN apt-get update && \
+    apt-get install -y wget build-essential libssl-dev zlib1g-dev vim && \
+    apt-get clean
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Descargar y extraer el código fuente de OpenSSH
+RUN wget https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz && \
+    tar -xvzf openssh-9.3p1.tar.gz && \
+    rm openssh-9.3p1.tar.gz && \
+    cd openssh-9.3p1 && \
+    # Modificar la versión en el archivo version.h
+    sed -i 's/^#define SSH_VERSION.*/#define SSH_VERSION "OpenSSH.?"/' version.h && \
+    # Compilar y reemplazar el binario SSH
+    ./configure && \
+    make && \
+    make install && \
+    mv /usr/local/bin/ssh /usr/bin/ssh
+
+# Establecer el cliente modificado como predeterminado
+CMD ["/bin/bash"]

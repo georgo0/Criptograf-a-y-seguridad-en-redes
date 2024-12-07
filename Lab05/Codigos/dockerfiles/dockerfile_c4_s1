@@ -1,0 +1,27 @@
+#nano ~/lab5_cripto/C4-S1/Dockerfile
+
+
+FROM ubuntu:22.10
+
+# Cambiar las fuentes de los repositorios para versiones obsoletas
+RUN sed -i 's|archive.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+RUN sed -i 's|security.ubuntu.com|old-releases.ubuntu.com|g' /etc/apt/sources.list
+
+# Actualizar e instalar cliente y servidor SSH
+RUN apt-get update && \
+    apt-get install -y openssh-server openssh-client && \
+    apt-get clean
+
+# Crear usuario con contraseña para acceso SSH
+RUN useradd -m prueba && echo "prueba:prueba" | chpasswd
+
+# Crear directorios necesarios y configurar SSH
+RUN [ ! -d /var/run/sshd ] || mkdir -p /var/run/sshd && \
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+
+# Exponer el puerto SSH
+EXPOSE 22
+
+# Ejecutar el servidor SSH
+CMD ["/usr/sbin/sshd", "-D"]

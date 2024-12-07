@@ -1,0 +1,20 @@
+#user: prueba
+#password: prueba
+
+#En el desarrollo de este laboratorio, la IP del servidor corresponde a 
+
+docker exec -it C1 /bin/bash
+ssh prueba@172.19.0.5
+
+docker exec -it C2 /bin/bash
+ssh prueba@172.19.0.5
+
+docker exec -it C3 /bin/bash
+ssh prueba@172.19.0.5
+
+docker exec -it C4S1 /bin/bash
+ssh prueba@172.19.0.5
+
+#Contenedor de cliente modificado
+docker exec -it Ce_mod /bin/bash
+ssh prueba@172.19.0.5
